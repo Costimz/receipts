@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Receipts</title>
+<meta name="description" content="An onchain detective agent. It runs real code in a disposable sandbox and proves every claim.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap">
+<link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="/"><span class="mark" aria-hidden="true"></span>Receipts</a>
+  <div class="meta" id="meta"></div>
+</header>
+
+<main>
+  <section class="hero" id="hero">
+    <h1>Ask about any token or wallet.<br>Get an answer with receipts.</h1>
+    <p class="lede">The agent writes code, runs it in a disposable sandbox on Vultr, and shows you the output behind every claim. Then it destroys the sandbox.</p>
+    <form id="ask" class="ask">
+      <label class="sr" for="q">Your question</label>
+      <textarea id="q" rows="2" maxlength="500" placeholder="Is 0x4ed4E862860beD51a9570b96d89aF5E1B0Efefed on Base safe to hold?"></textarea>
+      <div class="ask-row">
+        <div class="chips" id="chips"></div>
+        <button type="submit" id="go" class="btn primary">Investigate</button>
+      </div>
+    </form>
+    <div class="attack-call">
+      <div>
+        <strong>Don't take our word for it.</strong>
+        <span>Fire real escape attempts at the sandbox and watch what gets through.</span>
+      </div>
+      <button id="attack" class="btn danger" type="button">Try to break it</button>
+    </div>
+    <p class="err" id="err" role="alert" hidden></p>
+  </section>
+
+  <section id="run" hidden>
+    <div class="run-head">
+      <a class="back" href="/">New question</a>
+      <h2 id="run-title"></h2>
+      <div class="run-state"><span id="state" class="state"></span><button id="copy" class="link" type="button">Copy link</button></div>
+    </div>
+    <div id="verdict"></div>
+    <div id="timeline" class="timeline"></div>
+  </section>
+
+  <section class="how" id="how">
+    <h2>How a question stays contained</h2>
+    <ol class="flow">
+      <li><b>Plan</b><span>Vultr Serverless Inference breaks the question into steps.</span></li>
+      <li><b>Write</b><span>The model writes Python. It's treated as hostile from here on.</span></li>
+      <li><b>Run</b><span>A new container per script, with no keys and no route out except an allowlisted proxy.</span></li>
+      <li><b>Check</b><span>A program, not the model, confirms each claim appears in the real output.</span></li>
+      <li><b>Destroy</b><span>The container is removed, and Docker is asked again to confirm it's gone.</span></li>
+    </ol>
+    <div class="limits">
+      <div><b>Process</b><span>gVisor kernel, non-root, no capabilities, read-only disk</span></div>
+      <div><b>Secrets</b><span>Keys stay in the app. The host scans all output for leaks.</span></div>
+      <div><b>Resources</b><span>256 MB, half a CPU, 64 processes, 45 seconds</span></div>
+      <div><b>Network</b><span>Internal only. 12 approved hosts over HTTPS. All logged.</span></div>
+    </div>
+  </section>
+</main>
+<footer class="foot">Describes public onchain data. Not financial advice. <a href="https://github.com/" id="repo" hidden>Source</a></footer>
+<script src="/app.js"></script>
+</body>
+</html>

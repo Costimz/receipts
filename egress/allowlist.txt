@@ -1,0 +1,13 @@
+# The only hosts a sandbox can reach, HTTPS only. Everything else is refused and logged.
+eth.blockscout.com
+base.blockscout.com
+arbitrum.blockscout.com
+explorer.optimism.io
+polygon.blockscout.com
+ethereum-rpc.publicnode.com
+base-rpc.publicnode.com
+arbitrum-one-rpc.publicnode.com
+optimism-rpc.publicnode.com
+polygon-bor-rpc.publicnode.com
+api.dexscreener.com
+api.gopluslabs.io

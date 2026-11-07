@@ -1,0 +1,21 @@
+[Unit]
+Description=Receipts web app
+After=network-online.target docker.service
+Wants=network-online.target
+Requires=docker.service
+
+[Service]
+User=receipts
+Group=receipts
+EnvironmentFile=/etc/receipts/app.env
+Environment=RECEIPTS_DB=/var/lib/receipts/receipts.db
+Environment=EGRESS_LOG=/var/lib/receipts/egress/egress.jsonl
+ExecStart=/usr/bin/python3 -I /opt/receipts/app/server.py
+Restart=always
+RestartSec=2
+NoNewPrivileges=true
+ProtectHome=true
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target
